@@ -67,6 +67,23 @@
     Thanks for staying vigilant and helping keep Encore secure.
   </footer>
 
+
+  <script>
+  // Capture employee name from URL query string
+  const urlParams = new URLSearchParams(window.location.search);
+  const emp = urlParams.get("emp") || "Anonymous";
+
+  // Send log to Formspree
+  fetch("https://formspree.io/f/xwprewdl", {   // <-- replace with your endpoint
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      employee: emp,
+      clickedAt: new Date().toISOString()
+    })
+  });
+</script>
+
   <!-- <script>
     // Capture query parameters
     const params = new URLSearchParams(window.location.search);
