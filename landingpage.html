@@ -103,7 +103,7 @@
   const emp = urlParams.get("emp") || "Anonymous";
 
   // Send log to Formspree
-  fetch("https://formspree.io/f/xwprewdl", {   // <-- replace with your endpoint
+  fetch("https://formspree.io/f/xwprewdl", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
