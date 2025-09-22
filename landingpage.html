@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
   <meta charset="UTF-8">
   <title>Phishing Simulation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,8 +69,31 @@
     Thanks for staying vigilant and helping keep Encore secure.
   </footer>
 
+<script>
+  // Initialize Firebase
+   const firebaseConfig = {
+    apiKey: "AIzaSyBxITD38RSR88oNEKdClosCGqA7XOJdLgc",
+    authDomain: "phishingsimulation-ee048.firebaseapp.com",
+    projectId: "phishingsimulation-ee048",
+    storageBucket: "phishingsimulation-ee048.firebasestorage.app",
+    messagingSenderId: "471935043008",
+    appId: "1:471935043008:web:03b2913680324102b1f425",
+    measurementId: "G-C7GS57QY0H"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  <script>
+  // Get employee from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const emp = urlParams.get("emp") || "Anonymous";
+
+  // Log visit
+  db.collection("PhishingClicks").add({
+    employee: emp,
+    timestamp: new Date()
+  });
+</script>
+<!--   <script>
   // Capture employee name from URL query string
   const urlParams = new URLSearchParams(window.location.search);
   const emp = urlParams.get("emp") || "Anonymous";
@@ -82,7 +107,7 @@
       clickedAt: new Date().toISOString()
     })
   });
-</script>
+</script> -->
 
   <!-- <script>
     // Capture query parameters
