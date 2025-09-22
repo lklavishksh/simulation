@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phishing Simulation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border: 2px solid #d9534f;
+      border-radius: 12px;
+    }
+    h1 {
+      color: #d9534f;
+      text-align: center;
+    }
+    ul { margin-left: 20px; }
+    .highlight {
+      background: #fff3cd;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>****** This is a Phishing Simulation ******</h1>
+
+  <p>You just clicked on a test link — but in a real scenario, this could have been harmful.</p>
+
+  <h3>Here’s why this matters:</h3>
+  <ul>
+    <li>Phishing emails often look legitimate — using real names, logos, or familiar topics (like internal projects or apps).</li>
+    <li>Clicking unknown links can compromise our systems, steal login credentials, or install malware.</li>
+    <li>Always take a moment to think before clicking:
+      <ul>
+        <li>Were you expecting this email?</li>
+        <li>Is the sender’s email address legitimate?</li>
+        <li>Is the link suspicious or unexpected?</li>
+        <li>Does the message ask for credentials or sensitive info?</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>What you should do instead:</h3>
+  <ul>
+    <li>Hover over links to check where they go.</li>
+    <li>Report anything suspicious to Nuvollo immediately.</li>
+    <li>When in doubt — don’t click!</li>
+  </ul>
+
+  <div class="highlight">
+    <p>To learn more, you will be assigned the course <b>‘Understanding Cyber Security’</b> through Encore DMSU.</p>
+  </div>
+
+  <footer>
+    Thanks for staying vigilant and helping keep Encore secure.
+  </footer>
+
+  <!-- <script>
+    // Capture query parameters
+    const params = new URLSearchParams(window.location.search);
+    const uid = params.get('uid') || 'unknown';
+
+    // Send click info to Azure Function
+    fetch("https://bcnotfications-function.azurewebsites.net/api/logclick?code=YOUR_FUNCTION_KEY_HERE", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        uid: uid,
+        page: location.pathname + location.search,
+        ts: new Date().toISOString(),
+        ua: navigator.userAgent
+      })
+    }).catch(e => console.warn("Logging failed", e));
+  </script> -->
+</body>
+</html>
