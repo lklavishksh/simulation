@@ -3,10 +3,6 @@
 <head>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-<!--   <script>
-        // Run immediately as the script is encountered
-        alert("You clicked on a phishing link!");
-  </script> -->
   <meta charset="UTF-8">
   <title>Phishing Simulation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,10 +16,42 @@
       border: 2px solid #d9534f;
       border-radius: 12px;
     }
-    h1 {
-      color: #d9534f;
+    /* Animated Banner */
+    .banner {
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 12px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, rgba(217,83,79,0.1), rgba(217,83,79,0.05));
+      border: 2px solid rgba(217,83,79,0.3);
     }
+    .banner h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #d9534f;
+      text-transform: uppercase;
+      margin: 0;
+      position: relative;
+      z-index: 5;
+      text-shadow: 0 0 8px rgba(217,83,79,0.4);
+      animation: pulse 2s infinite;
+    }
+    .glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(217,83,79,0.25), transparent 70%);
+      filter: blur(25px);
+      z-index: 1;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
     ul { margin-left: 20px; }
     .highlight {
       background: #fff3cd;
@@ -40,7 +68,10 @@
   </style>
 </head>
 <body>
-  <h1>****** This is a Phishing Simulation ******</h1>
+  <div class="banner">
+    <div class="glow"></div>
+    <h1>****** This is a Phishing Simulation ******</h1>
+  </div>
 
   <p>You just clicked on a test link — but in a real scenario, this could have been harmful.</p>
 
@@ -75,7 +106,7 @@
 
 <script>
   // Initialize Firebase
-   const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyBxITD38RSR88oNEKdClosCGqA7XOJdLgc",
     authDomain: "phishingsimulation-ee048.firebaseapp.com",
     projectId: "phishingsimulation-ee048",
@@ -97,38 +128,5 @@
     timestamp: new Date()
   });
 </script>
-<!--   <script>
-  // Capture employee name from URL query string
-  const urlParams = new URLSearchParams(window.location.search);
-  const emp = urlParams.get("emp") || "Anonymous";
-
-  // Send log to Formspree
-  fetch("https://formspree.io/f/xwprewdl", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      employee: emp,
-      clickedAt: new Date().toISOString()
-    })
-  });
-</script> -->
-
-  <!-- <script>
-    // Capture query parameters
-    const params = new URLSearchParams(window.location.search);
-    const uid = params.get('uid') || 'unknown';
-
-    // Send click info to Azure Function
-    fetch("https://bcnotfications-function.azurewebsites.net/api/logclick?code=YOUR_FUNCTION_KEY_HERE", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        uid: uid,
-        page: location.pathname + location.search,
-        ts: new Date().toISOString(),
-        ua: navigator.userAgent
-      })
-    }).catch(e => console.warn("Logging failed", e));
-  </script> -->
 </body>
 </html>
