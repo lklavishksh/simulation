@@ -1,83 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
   <meta charset="UTF-8">
-  <title>Phishing Simulation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Alert</title>
   <style>
+    /* Base Styles */
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #f9f9f9;
-      border: 2px solid #d9534f;
-      border-radius: 12px;
-    }
-    /* Animated Banner */
-    .banner {
-      margin-bottom: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(90deg, rgba(217,83,79,0.1), rgba(217,83,79,0.05));
-      border: 2px solid rgba(217,83,79,0.3);
-    }
-    .banner h1 {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #d9534f;
-      text-transform: uppercase;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      position: relative;
-      z-index: 5;
-      text-shadow: 0 0 8px rgba(217,83,79,0.4);
-      animation: pulse 2s infinite;
-    }
-    .glow {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(217,83,79,0.25), transparent 70%);
-      filter: blur(25px);
-      z-index: 1;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { opacity: 0.6; }
-      50% { opacity: 1; }
-      100% { opacity: 0.6; }
+      padding: 0;
+      background: linear-gradient(120deg, #ffcccc, #ffe6e6);
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      animation: backgroundPulse 6s infinite alternate;
     }
 
-    ul { margin-left: 20px; }
-    .highlight {
-      background: #fff3cd;
-      padding: 10px;
-      border-radius: 6px;
-      margin-top: 15px;
+    /* Keyframes for background pulse */
+    @keyframes backgroundPulse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    footer {
-      margin-top: 30px;
-      font-size: 0.9em;
+
+    /* Animated Alert Header */
+    h1 {
+      color: #ff0000;
+      font-size: 3em;
+      font-weight: bold;
       text-align: center;
-      color: #666;
+      margin-top: 40px;
+      text-shadow: 2px 2px 8px #ff6666;
+      animation: shake 0.8s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      50% { transform: translateX(8px); }
+      75% { transform: translateX(-8px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Highlight styles */
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    /* Email box */
+    .email-box {
+      border: 3px solid #ff4d4d;
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 15px 0;
+      background-color: #fff0f0;
+      font-size: 1.1em;
+      font-weight: bold;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .email-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255,0,0,0.5);
+    }
+
+    /* Section headers */
+    h2 {
+      margin-top: 30px;
+      font-size: 1.5em;
+      color: #cc0000;
+      text-decoration: underline;
+    }
+
+    /* List styles */
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+    }
+
+    ul li::before {
+      content: "⚠️ ";
+      color: #cc0000;
+    }
+
+    ul ul li::before {
+      content: "• ";
+      color: #990000;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      font-weight: bold;
+      color: #ff1a1a;
+      font-size: 1.2em;
+      text-align: center;
+      animation: pulseText 2s infinite;
+    }
+
+    @keyframes pulseText {
+      0% { color: #ff1a1a; }
+      50% { color: #ff6666; }
+      100% { color: #ff1a1a; }
+    }
+
+    /* Paragraphs */
+    p {
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.1em;
+      padding: 0 20px;
+    }
+
+    em {
+      font-style: italic;
+      color: #990000;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="banner">
-    <div class="glow"></div>
-    <h1>****** This is a Phishing Simulation ******</h1>
+
+  <h1>⚠️ Phishing Alert!!! ⚠️</h1>
+
+  <p>
+    You just clicked on a phishing simulation link — 
+    <strong>no harm done.</strong> In a real scenario, this could have been harmful!
+  </p>
+
+  <p>
+    Look back at the email, it came from. This email was not sent via Doug’s actual email address,
+    <span class="highlight">Dougs@encoredms.com</span>; it was sent by:
+  </p>
+
+  <div class="email-box">
+    Doug Skrepnek &lt;<span class="highlight">dougs@encoredms.org</span>&gt;
   </div>
 
-  <p>You just clicked on a test link — but in a real scenario, this could have been harmful.</p>
-
-  <h3>Here’s why this matters:</h3>
+  <h2>Here’s why this matters:</h2>
   <ul>
-    <li>Phishing emails often look legitimate — using real names, logos, or familiar topics (like internal projects or apps).</li>
+    <li>Phishing emails often look legitimate — using real names, logos, or familiar topics.</li>
     <li>Clicking unknown links can compromise our systems, steal login credentials, or install malware.</li>
     <li>Always take a moment to think before clicking:
       <ul>
@@ -89,22 +163,24 @@
     </li>
   </ul>
 
-  <h3>What you should do instead:</h3>
+  <h2>What you should do instead:</h2>
   <ul>
     <li>Hover over links to check where they go.</li>
     <li>Report anything suspicious to Nuvollo immediately.</li>
-    <li>When in doubt — don’t click!</li>
+    <li><strong>When in doubt — don’t click!</strong></li>
   </ul>
 
-  <div class="highlight">
-    <p>To learn more, you will be assigned the course <b>‘Understanding Cyber Security’</b> through Encore DMSU.</p>
-  </div>
+  <p>
+    To learn more, you will be assigned the course 
+    <em>‘Understanding Cyber Security’</em> through Encore DMSU.
+  </p>
 
-  <footer>
-    Thanks for staying vigilant and helping keep Encore secure.
-  </footer>
+  <p class="footer">
+    Stay vigilant and help keep Encore secure.
+  </p>
 
-<script>
+
+  <script>
   // Initialize Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyBxITD38RSR88oNEKdClosCGqA7XOJdLgc",
@@ -128,5 +204,6 @@
     timestamp: new Date()
   });
 </script>
+
 </body>
 </html>
